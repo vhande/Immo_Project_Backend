@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
      })
 
 
-router.post('/ad',uploader.single("file"),async (req, res) => {
+router.post('/',uploader.single("file"),async (req, res) => {
     const classifiedtype = req.body.classifiedtype
     const type = req.body.type
     const city = req.body.city
