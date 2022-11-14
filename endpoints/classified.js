@@ -6,6 +6,7 @@ const {ClassifiedRent,ClassifiedSale} = require('../modules/classifiedschema')
 
 router.get('/:id', (req,res) => {
     const id = req.params.id
+    try {
     ClassifiedRent.find({"_id":id})
     .then(answer=> {
         if (answer.length !== 0) {
@@ -21,7 +22,9 @@ router.get('/:id', (req,res) => {
             console.log(answer)
         }      
     })
-
+} catch (err) {
+    console.log(err)
+}
 })
 
 module.exports = router;

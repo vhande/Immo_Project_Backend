@@ -1,7 +1,9 @@
 const express = require("express")
-const app = express()
+const router = express.Router()
+const mongoose = require('mongoose')
+const {ClassifiedRent,ClassifiedSale} = require('../modules/classifiedschema')
 
-app.get('/search/:classifiedtype/:type/:city', (req,res) => {
+router.get('/:classifiedtype/:type/:city', (req,res) => {
 
     // to check URL details
     const url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
@@ -13,12 +15,6 @@ app.get('/search/:classifiedtype/:type/:city', (req,res) => {
    let bedroom = req.query.minBedroomCount
    let minPrice = req.query.minPrice
    let maxPrice = req.query.maxPrice
-   const queryValues = Object.values(req.query)
-
-
-  
-
-   console.log(classifiedtype, bedroom, "bedroom", city, minPrice, maxPrice)
    
    // to check if the value of the city is matching with one of the cities below.
 
@@ -30,8 +26,8 @@ app.get('/search/:classifiedtype/:type/:city', (req,res) => {
    minPrice == 'null' || minPrice.length === 0 ? minPrice = 1 : ""
    maxPrice == 'null' || maxPrice.length === 0 ? maxPrice = 1000000 : ""
 
-   
-   classifiedtype === "sell" && cityArray.length === 1 ?
+   try {
+   classifiedtype === "sale" && cityArray.length === 1 ?
        ClassifiedSale.find(
            {type:type,
            city:city,
@@ -44,7 +40,7 @@ app.get('/search/:classifiedtype/:type/:city', (req,res) => {
            console.log(minPrice, maxPrice, bedroom, "aaaa")
        })
 
-   : classifiedtype === "sell" ?
+   : classifiedtype === "sale" ?
      ClassifiedSale.find(
            {
            type:type})
@@ -73,4 +69,11 @@ app.get('/search/:classifiedtype/:type/:city', (req,res) => {
        console.log(answer)
        console.log("fourth")
    })
+} catch (err) {
+    console.log(err)
+}
 })
+
+module.exports = router;
+
+
