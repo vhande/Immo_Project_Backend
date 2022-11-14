@@ -51,6 +51,6 @@ const PORT = 4000
 
 app.use("/api/product", product)
 app.use("/ad", ad)
-app.use("/classified/:id", classified)
+app.use("/classified", classified)
 
 app.listen(PORT, ()=> (console.log("Server is running")))

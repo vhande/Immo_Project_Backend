@@ -1,14 +1,13 @@
 const express = require("express")
 const router = express.Router()
 
-router.get('/classified/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     const id = req.params.id
     ClassifiedRent.find({"_id":id})
     .then(answer=> {
         if (answer.length !== 0) {
             res.json(answer)
             console.log(answer)
-            message:success
         }
     })
 
