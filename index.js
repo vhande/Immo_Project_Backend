@@ -40,4 +40,4 @@ app.use("/latest", latest)
 app.use("/getall", getall)
 app.use("/login", login)
 
-app.listen(4000, ()=> (console.log("Server is running")))
+app.listen(process.env.PORT || 8000, ()=> (console.log("Server is running")))
