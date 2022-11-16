@@ -3,13 +3,14 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const {User} = require('../modules/userschema')
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 require('dotenv').config()
 
 
 const jwtSecret = process.env.KEY
 
 
-router.post('/login', (req,res) => {
+router.post('/', (req,res) => {
     const {email} = req.body;
     const {password} = req.body;
     try {

@@ -2,6 +2,8 @@ const express = require("express")
 const multer = require("multer");
 const router = express.Router()
 const app = express()
+const mongoose = require('mongoose')
+const {ClassifiedRent,ClassifiedSale} = require('../modules/classifiedschema')
 
 app.use('/uploads',express.static('uploads'))
 
@@ -15,7 +17,7 @@ const storage = multer.diskStorage({
      })
 
 
-router.post('/',uploader.single("file"),async (req, res) => {
+router.post('/',uploader.single("file"), (req, res) => {
     const classifiedtype = req.body.classifiedtype
     const type = req.body.type
     const city = req.body.city

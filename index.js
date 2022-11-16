@@ -1,9 +1,17 @@
 const express = require('express')
 const mongoose = require("mongoose")
-const cors = require('cors');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const multer = require("multer");
+const app = express()
+app.use(express.json())
+require('dotenv').config()
+const cors = require("cors");
+app.use(cors());
+
+app.use(express.static(path.join(__dirname, "/immo/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/immo/build', 'index.html'));
+});
+
 
 const product = require("./endpoints/product")
 const ad = require("./endpoints/ad")
@@ -13,10 +21,8 @@ const register = require("./endpoints/register")
 const profile = require("./endpoints/profile")
 const latest = require("./endpoints/latest")
 const getall = require("./endpoints/getall")
+const login = require("./endpoints/login")
 
-const app = express()
-app.use(express.json())
-require('dotenv').config()
 
 
 main().catch(err => console.log(err));
@@ -32,5 +38,6 @@ app.use("/register", register)
 app.use("/profile", profile)
 app.use("/latest", latest)
 app.use("/getall", getall)
+app.use("/login", login)
 
 app.listen(4000, ()=> (console.log("Server is running")))
