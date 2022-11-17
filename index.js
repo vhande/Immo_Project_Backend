@@ -31,13 +31,13 @@ async function main() {
 }
 
 app.use("/api/product", product)
-app.use("/ad", ad)
-app.use("/classified", classified)
-app.use("/search", search)
-app.use("/register", register)
-app.use("/profile", profile)
-app.use("/latest", latest)
-app.use("/getall", getall)
-app.use("/login", login)
+app.use("/api/ad", ad)
+app.use("/api/classified", classified)
+app.use("/api/search", search)
+app.use("/api/register", register)
+app.use("/api/profile", profile)
+app.use("/api/latest", latest)
+app.use("/api/getall", getall)
+app.use("/api/login", login)
 
 app.listen(process.env.PORT || 8000, ()=> (console.log("Server is running")))
