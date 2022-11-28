@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const mongoose = require('mongoose')
-const {ClassifiedRent,ClassifiedSale} = require('../modules/classifiedschema')
+const {ClassifiedRent,ClassifiedSale} = require('../schemas/classifiedschema')
 
 router.get('/', (req,res)=> {
-    ClassifiedSale.find({})
+    ClassifiedSale.find({}).limit(10)
     .then(answer => {
         res.json(answer)
         console.log(answer)

@@ -6,11 +6,6 @@ require('dotenv').config()
 const cors = require("cors");
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "/immo/build")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/immo/build', 'index.html'));
-});
 
 
 const product = require("./endpoints/product")
@@ -27,17 +22,18 @@ const login = require("./endpoints/login")
 
 main().catch(err => console.log(err));
 async function main() {
-    await mongoose.connect(process.env.DIGITALCITY, (err) => console.log('connected'))
+    await mongoose.connect(process.env.URL, (err) => console.log('connected'))
 }
 
-app.use("/api/product", product)
-app.use("/api/ad", ad)
-app.use("/api/classified", classified)
-app.use("/api/search", search)
-app.use("/api/register", register)
-app.use("/api/profile", profile)
-app.use("/api/latest", latest)
-app.use("/api/getall", getall)
-app.use("/api/login", login)
+// app.use('/uploads',express.static('uploads'))
+app.use("/product", product)
+app.use("/ad", ad)
+app.use("/classified", classified)
+app.use("/search", search)
+app.use("/register", register)
+app.use("/profile", profile)
+app.use("/latest", latest)
+app.use("/getall", getall)
+app.use("/login", login)
 
 app.listen(process.env.PORT || 8000, ()=> (console.log("Server is running")))

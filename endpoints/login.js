@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const mongoose = require('mongoose')
-const {User} = require('../modules/userschema')
+const {User} = require('../schemas/userschema')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config()

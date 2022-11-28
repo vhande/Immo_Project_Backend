@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const mongoose = require('mongoose')
-const {ClassifiedRent,ClassifiedSale} = require('../modules/classifiedschema')
+const {ClassifiedRent,ClassifiedSale} = require('../schemas/classifiedschema')
 
 
 router.get('/:id', (req,res) => {
