@@ -80,7 +80,7 @@ router.get('/:classifiedtype/:type/:city', (req,res) => {
         {type:type,
         bedrooms: {$gte:bedroom},
         price:{$gte: minPrice, $lte:maxPrice}
-        }).sort({ _id: -1 }).skip( page > 1 ? ( ( page - 1 ) * 5 ) : 0 ).limit(5)
+        }).sort(order).skip( page > 1 ? ( ( page - 1 ) * 5 ) : 0 ).limit(5)
     let count = await ClassifiedRent.find(
         {type:type,
         bedrooms: {$gte:bedroom},
